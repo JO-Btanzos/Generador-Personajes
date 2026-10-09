@@ -1,3 +1,7 @@
+
+import random
+
+
 def obtener_clase(clase):
     if clase == 1:
         return "Guerrero"
@@ -19,6 +23,10 @@ def obtener_hp(clase):
     else:
         return 20
 
+
+# Diccionario para guardar personajes
+personajes_guardados = {}
+contador = 0
 
 opcion = 0
 
@@ -48,10 +56,13 @@ while opcion == 0:
         nombre_clase = obtener_clase(clase)
         hp = obtener_hp(clase)
 
-        fuerza = 10
-        inteligencia = 10
-        agilidad = 10
+        # Estadisticas aleatorias
+        # Autoestudio: modulo random de Python
+        fuerza = random.randint(1, 20)
+        inteligencia = random.randint(1, 20)
+        agilidad = random.randint(1, 20)
 
+        # Bonificaciones por clase
         if clase == 1:
             fuerza = fuerza + 3
 
@@ -64,21 +75,62 @@ while opcion == 0:
         else:
             agilidad = agilidad + 3
 
+        # Limite maximo de atributos
+        if fuerza > 20:
+            fuerza = 20
+
+        if inteligencia > 20:
+            inteligencia = 20
+
+        if agilidad > 20:
+            agilidad = 20
+
+        # Crear diccionario del personaje
+        personaje = {
+            "nombre": nombre,
+            "clase": nombre_clase,
+            "fuerza": fuerza,
+            "inteligencia": inteligencia,
+            "agilidad": agilidad,
+            "hp": hp
+        }
+
+        # Guardar personaje
+        contador = contador + 1
+        personajes_guardados[contador] = personaje
+
         print("")
         print("----- PERSONAJE CREADO -----")
-        print("Nombre:", nombre)
-        print("Clase:", nombre_clase)
-        print("Fuerza:", fuerza)
-        print("Inteligencia:", inteligencia)
-        print("Agilidad:", agilidad)
-        print("HP:", hp)
+        print("Nombre:", personaje["nombre"])
+        print("Clase:", personaje["clase"])
+        print("Fuerza:", personaje["fuerza"])
+        print("Inteligencia:", personaje["inteligencia"])
+        print("Agilidad:", personaje["agilidad"])
+        print("HP:", personaje["hp"])
 
         opcion = 0
 
     elif opcion == 2:
 
         print("")
-        print("Esta opcion se agregara mas adelante.")
+        print("===== PERSONAJES GUARDADOS =====")
+
+        if contador == 0:
+            print("Todavia no hay personajes guardados.")
+
+        else:
+            for numero in personajes_guardados:
+
+                personaje = personajes_guardados[numero]
+
+                print("")
+                print("Personaje numero:", numero)
+                print("Nombre:", personaje["nombre"])
+                print("Clase:", personaje["clase"])
+                print("Fuerza:", personaje["fuerza"])
+                print("Inteligencia:", personaje["inteligencia"])
+                print("Agilidad:", personaje["agilidad"])
+                print("HP:", personaje["hp"])
 
         opcion = 0
 
