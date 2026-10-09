@@ -46,3 +46,18 @@ Imprime en la pantalla todo lo que está escrito ahí. Así el usuario puede ver
 Opción 3 - Salir:
 
 El programa se despide del usuario y se rompe el ciclo, terminando su ejecución :).
+
+--------------------------------------------
+
+
+
+Para mejorar el generador de personajes, investigué por mi cuenta el módulo `random` de Python, específicamente la función `random.randint()`.
+
+Esta función permite generar números enteros aleatorios dentro de un rango establecido. La utilicé para asignar valores iniciales de fuerza, inteligencia y agilidad entre 1 y 20, haciendo que cada personaje tenga estadísticas diferentes.
+
+Fuente de referencia: 
+
+Python Software Foundation. (s. f.). *random — Generar números pseudoaleatorios*. Documentación oficial de Python. https://docs.python.org/es/3/library/random.html
+
+https://youtu.be/nLKjIKz6zSI?si=KsCRuQBWUSJQSC5j
+
