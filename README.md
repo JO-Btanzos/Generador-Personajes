@@ -1,64 +1,139 @@
 Proyecto: Generador Automático de Personajes (Estilo Dungeons & Dragons)
 
-Contexto:
+----Contexto----
 
-En los juegos de rol clásicos como Dungeons & Dragons, crear un personaje nuevo toma mucho tiempo. Los jugadores deben lanzar dados para definir sus atributos base y luego hacer cálculos matemáticos para sumar puntos extra dependiendo de su clase.
+En los juegos de rol clásicos como Dungeons & Dragons, crear un personaje nuevo puede tomar tiempo. Los jugadores deben determinar sus atributos y realizar cálculos para aplicar bonificaciones dependiendo de la clase elegida.
 
-Este proyecto automatiza todo ese proceso. Es una herramienta muy interesante y útil porque funciona como un asistente real para Jugadores y "Dungeon Masters". Agiliza el inicio de las partidas al hacer las matemáticas al instante, evita errores de cálculo al momento de sumar atributos, y guarda toda la información de forma estructurada. Al final, crea un archivo que sirve como una "hoja de personaje digital" permanente, permitiendo a los usuarios tener un catálogo de héroes listos para jugar en cualquier momento.
+Este proyecto busca automatizar parte de ese proceso mediante un programa que genera personajes, calcula sus estadísticas y organiza su información.
 
-Algoritmo:
+La herramienta está pensada como un asistente para jugadores y *Dungeon Masters*, ya que permite agilizar la creación de aventureros, reducir errores de cálculo y consultar los personajes generados durante la ejecución del programa.
 
-Mostrar el menú principal: El programa inicia y muestra tres opciones: 1) Crear nuevo personaje, 2) Ver personajes guardados, 3) Salir.
+El proyecto se desarrolla progresivamente conforme se aprenden y aplican nuevos conceptos de programación en Python.
 
+----Algoritmo----
 
-Opción 1 - Crear un personaje:
+El programa muestra un menú principal con tres opciones:
 
-El programa le pide al usuario que escriba el nombre de su personaje.
+1. Crear un nuevo personaje.
+2. Ver los personajes guardados.
+3. Salir.
 
-Le pregunta qué clase quiere ser, mostrando un menú más sencillo: 1) Guerrero, 2) Mago, 3) Bárbaro, o 4) Bardo.
+---Opción 1: Crear un personaje---
 
-La computadora elige números al azar (del 1 al 20) para tres atributos principales: Fuerza, Inteligencia y Agilidad.
+El programa solicita al usuario el nombre de su personaje.
 
-El programa evalúa qué clase se eligió para dar bonificaciones a los atributos y calcular los Puntos de Vida.
+Posteriormente, permite elegir una raza entre las siguientes opciones:
 
+1. Humano.
+2. Elfo.
+3. Enano.
+4. Orco.
 
-Si es un Bárbaro, le suma 5 puntos a la Fuerza y le da 30 Puntos de Vida.
+Después, solicita elegir una clase:
 
-Si es un Guerrero, le suma 3 a la Fuerza y le da 25 Puntos de Vida.
+1. Guerrero.
+2. Mago.
+3. Bárbaro.
+4. Bardo.
 
-Si es un Bardo, le suma 3 a la Agilidad y le da 20 Puntos de Vida.
+La computadora genera números aleatorios entre 1 y 20 para establecer tres atributos principales:
 
-Si es un Mago, le suma 5 a la Inteligencia y le da 15 Puntos de Vida.
+- Fuerza.
+- Inteligencia.
+- Agilidad.
 
+A continuación, el programa aplica una bonificación según la clase seleccionada:
 
-El programa muestra en la pantalla un resumen del personaje con sus puntos finales y su vida.
+- **Bárbaro:** suma 5 puntos a la Fuerza y asigna 30 puntos de vida (HP).
+- **Guerrero:** suma 3 puntos a la Fuerza y asigna 25 HP.
+- **Bardo:** suma 3 puntos a la Agilidad y asigna 20 HP.
+- **Mago:** suma 5 puntos a la Inteligencia y asigna 15 HP.
 
-Finalmente, guarda este resumen en un archivo llamado "personajes_dnd.txt."
+Después de aplicar las bonificaciones, ninguna estadística puede superar los 20 puntos.
 
+El programa también solicita una descripción personalizada del personaje.
 
-Opción 2 - Ver personajes guardados:
+Finalmente, muestra un resumen con los datos del aventurero y almacena su información para poder consultarla desde la opción correspondiente.
 
-El programa abre el archivo "personajes_dnd.txt" en modo de lectura.
+---Opción 2: Ver personajes guardados---
 
-Imprime en la pantalla todo lo que está escrito ahí. Así el usuario puede ver su colección completa de aventureros.
+El programa comprueba si existen personajes creados.
 
+Si todavía no hay personajes, muestra un mensaje indicándolo.
 
-Opción 3 - Salir:
+Si existen personajes guardados, recorre la colección y muestra la información de cada uno, incluyendo su nombre, raza, clase, estadísticas, puntos de vida y descripción.
 
-El programa se despide del usuario y se rompe el ciclo, terminando su ejecución :).
+***Nota sobre el almacenamiento: actualmente, los personajes se guardan en un diccionario de Python durante la ejecución del programa. La escritura y lectura de un archivo llamado `personajes_dnd.txt` forman parte de la idea original, pero todavía deben implementarse en el código actual. Por ello, los personajes no permanecen guardados al cerrar el programa.
 
+---Opción 3: Salir---
 
---------------------------------------------
+El programa muestra un mensaje de despedida y termina su ejecución.
 
+----Información de cada personaje----
 
+Cada personaje se representa mediante un diccionario que contiene los siguientes datos:
 
-Para mejorar el generador de personajes, investigué por mi cuenta el módulo `random` de Python, específicamente la función `random.randint()`.
+- Nombre.
+- Raza.
+- Clase.
+- Fuerza.
+- Inteligencia.
+- Agilidad.
+- Puntos de vida (HP).
+- Descripción.
 
-Esta función permite generar números enteros aleatorios dentro de un rango establecido. La utilicé para asignar valores iniciales de fuerza, inteligencia y agilidad entre 1 y 20, haciendo que cada personaje tenga estadísticas diferentes.
+Los personajes se organizan en un diccionario principal que permite identificarlos mediante un número consecutivo.
 
-Fuente de referencia: 
+---Características agregadas durante el desarrollo---
 
-Python Software Foundation. (s. f.). *random — Generar números pseudoaleatorios*. Documentación oficial de Python. https://docs.python.org/es/3/library/random.html
+Además de las funciones contempladas en la idea original, se han incorporado las siguientes características:
+
+- Sistema de razas:** permite elegir entre humano, elfo, enano y orco.
+- Descripción personalizada:** permite escribir una descripción para cada personaje.
+- Almacenamiento estructurado:** los datos de cada aventurero se organizan mediante diccionarios.
+- Consulta de personajes:** permite visualizar los personajes creados durante la ejecución del programa.
+
+Estas mejoras amplían las posibilidades de personalización y organización de los aventureros.
+
+ Conceptos de programación utilizados
+
+El proyecto aplica los siguientes conceptos de Python:
+
+- Variables.
+- Entrada de datos mediante `input()`.
+- Salida de información mediante `print()`.
+- Condicionales `if`, `elif` y `else`.
+- Ciclos `while` y `for`.
+- Funciones.
+- Diccionarios.
+- Cadenas de texto.
+- Números enteros.
+- Módulos y funciones de bibliotecas de Python.
+- Generación de números aleatorios.
+
+ ----Autoestudio----
+
+Para mejorar el generador de personajes, se investigó por cuenta propia el módulo `random` de Python, específicamente la función `random.randint()`.
+
+Esta función permite generar números enteros aleatorios dentro de un rango establecido. Se utiliza para asignar valores iniciales de Fuerza, Inteligencia y Agilidad entre 1 y 20, de modo que los personajes puedan tener estadísticas diferentes.
+
+----Fuente de referencia----
+
+Python Software Foundation. (s. f.). *random — Generar números pseudoaleatorios*. Documentación oficial de Python.
+
+https://docs.python.org/es/3/library/random.html
+
+También se consultó el siguiente recurso audiovisual:
 
 https://youtu.be/nLKjIKz6zSI?si=KsCRuQBWUSJQSC5j
 
+----Mejoras futuras----
+
+Entre las posibles mejoras del proyecto se encuentran:
+
+- Implementar el almacenamiento permanente de personajes en `personajes_dnd.txt`.
+- Leer los personajes guardados en ese archivo al seleccionar la opción correspondiente.
+- Incorporar armas e inventarios.
+- Ampliar las opciones de personalización de los personajes.
+
+Estas mejoras podrán desarrollarse conforme avance el proyecto y se incorporen nuevos conocimientos de programación.
