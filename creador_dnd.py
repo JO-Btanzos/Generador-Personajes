@@ -1,4 +1,3 @@
-
 import random
 
 
@@ -24,6 +23,17 @@ def obtener_hp(clase):
         return 20
 
 
+def obtener_raza(raza):
+    if raza == 1:
+        return "Humano"
+    elif raza == 2:
+        return "Elfo"
+    elif raza == 3:
+        return "Enano"
+    else:
+        return "Orco"
+
+
 # Diccionario para guardar personajes
 personajes_guardados = {}
 contador = 0
@@ -45,6 +55,15 @@ while opcion == 0:
         nombre = input("Escribe el nombre de tu personaje: ")
 
         print("")
+        print("Elige una raza:")
+        print("1. Humano")
+        print("2. Elfo")
+        print("3. Enano")
+        print("4. Orco")
+
+        raza = int(input("Escribe el numero de la raza: "))
+
+        print("")
         print("Elige una clase:")
         print("1. Guerrero")
         print("2. Mago")
@@ -53,8 +72,11 @@ while opcion == 0:
 
         clase = int(input("Escribe el numero de la clase: "))
 
+        nombre_raza = obtener_raza(raza)
         nombre_clase = obtener_clase(clase)
         hp = obtener_hp(clase)
+
+        descripcion = input("Escribe una descripcion de tu personaje: ")
 
         # Estadisticas aleatorias
         # Autoestudio: modulo random de Python
@@ -88,11 +110,13 @@ while opcion == 0:
         # Crear diccionario del personaje
         personaje = {
             "nombre": nombre,
+            "raza": nombre_raza,
             "clase": nombre_clase,
             "fuerza": fuerza,
             "inteligencia": inteligencia,
             "agilidad": agilidad,
-            "hp": hp
+            "hp": hp,
+            "descripcion": descripcion
         }
 
         # Guardar personaje
@@ -102,11 +126,13 @@ while opcion == 0:
         print("")
         print("----- PERSONAJE CREADO -----")
         print("Nombre:", personaje["nombre"])
+        print("Raza:", personaje["raza"])
         print("Clase:", personaje["clase"])
         print("Fuerza:", personaje["fuerza"])
         print("Inteligencia:", personaje["inteligencia"])
         print("Agilidad:", personaje["agilidad"])
         print("HP:", personaje["hp"])
+        print("Descripcion:", personaje["descripcion"])
 
         opcion = 0
 
@@ -126,11 +152,13 @@ while opcion == 0:
                 print("")
                 print("Personaje numero:", numero)
                 print("Nombre:", personaje["nombre"])
+                print("Raza:", personaje["raza"])
                 print("Clase:", personaje["clase"])
                 print("Fuerza:", personaje["fuerza"])
                 print("Inteligencia:", personaje["inteligencia"])
                 print("Agilidad:", personaje["agilidad"])
                 print("HP:", personaje["hp"])
+                print("Descripcion:", personaje["descripcion"])
 
         opcion = 0
 
